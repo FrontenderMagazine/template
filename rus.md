@@ -279,7 +279,7 @@ DOM, тем чаще вам приходится прибегать к конк�
     padding: 5px;
     border-bottom: 1px solid #aaa;
   }
-  #unsupportedbrowsersneedscoping h3 {
+  #unsupportedbrowsersneedscoping .title {
     margin: 0 !important;
   }
   #unsupportedbrowsersneedscoping textarea {
@@ -297,7 +297,7 @@ DOM, тем чаще вам приходится прибегать к конк�
 </style>
 <div id="unsupportedbrowsersneedscoping">
     <header>
-        <h3>Комментарий</h3>
+        <span class="title">Комментарий</span>
     </header>
     <content select="p"></content>
     <textarea></textarea>
