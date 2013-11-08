@@ -161,7 +161,7 @@ button {
 }
 </style>
 <div class="demoarea">
-<button onclick="useIt()">Use me</button>
+<button onclick="useIt()">Нажми на меня</button>
 <div id="container"></div>
 <template id="inert-demo">
   <div>Количество раз, которое использован Template: <span>0</span></div>
