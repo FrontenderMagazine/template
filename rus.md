@@ -164,8 +164,8 @@ button {
 <button onclick="useIt()">Use me</button>
 <div id="container"></div>
 <template id="inert-demo">
-  <div>Template used <span>0</span></div>
-  <script>if ('HTMLTemplateElement' in window) {alert('Thanks!')}</script>
+  <div>Количество раз, которое использован Template: <span>0</span></div>
+  <script>if ('HTMLTemplateElement' in window) {alert('Спасибо!')}</script>
 </template>
 <script>
   function useIt() {
@@ -256,6 +256,76 @@ DOM, тем чаще вам приходится прибегать к конк�
       shadow.appendChild(document.querySelector('template').content);
     </script>
 
+<template id="demo-sd-template">
+<style>
+  @host {
+    * {
+      background: #f8f8f8;
+      padding: 10px;
+      -webkit-transition: all 400ms ease-in-out;
+      box-sizing: border-box;
+      border-radius: 5px;
+      width: 450px;
+      max-width: 100%;
+    } 
+    *:hover {
+      background: #ccc;
+    }
+  }
+  #unsupportedbrowsersneedscoping {
+    position: relative;
+  }
+  #unsupportedbrowsersneedscoping header {
+    padding: 5px;
+    border-bottom: 1px solid #aaa;
+  }
+  #unsupportedbrowsersneedscoping h3 {
+    margin: 0 !important;
+  }
+  #unsupportedbrowsersneedscoping textarea {
+    font-family: inherit;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+  }
+  #unsupportedbrowsersneedscoping footer {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+  }
+</style>
+<div id="unsupportedbrowsersneedscoping">
+  <header>
+    <h3>Комментарий</h3>
+  </header>
+  <content select="p"></content>
+  <textarea></textarea>
+  <footer>
+    <button>Добавить</button>
+  </footer>
+</div>
+</template></p>
+<div id="demo-sd-host">
+  <p>Инструкции для пользователя</p>
+</div>
+
+<script>
+(function() {
+  var host = document.querySelector('#demo-sd-host');
+  var compat = HTMLElement.prototype.webkitCreateShadowRoot ||
+               HTMLElement.prototype.createShadowRoot ? true : false;
+  if (compat && 'HTMLTemplateElement' in window) {
+    var shadow = host.webkitCreateShadowRoot();
+    shadow.applyAuthorStyles = true;
+    shadow.appendChild(document.querySelector('#demo-sd-template').content);
+  } else {
+    document.querySelector('#unsupportedbrowsersneedscoping').style.display = 'none';
+    host.style.display = 'none';
+  }
+})();
+</script>
+
 ## Нюансы
 
 Вот несколько нюансов, с которыми я столкнулся используя `<template>` в полевых 
@@ -306,13 +376,16 @@ PageSpeed могут переместить шаблоны, в которых о
 приёма:
 
 <style>
-label.good {
+span.good {
     background-color: green;
-}
-label.bad {
+    }
+span.bad {
     background-color: red;
-}
-label.bad, label.good, label.sortof {
+    }
+span.sortof {
+    background-color: rgb(230, 190, 32);
+    }
+span.bad, span.good, span.sortof {
     padding: 4px;
     line-height: 1.7;
     border-radius: 50% 50% 50% 50%;
@@ -325,19 +398,26 @@ label.bad, label.good, label.sortof {
     width: 20px;
     height: 20px;
     font-size: 16px;
-}
-label {
     cursor: pointer;
-}
+    }
+span.good:after {
+    content: ':)';
+    }
+span.bad:after {
+    content: ':(';
+    }
+span.sortof:after {
+    content: ':|';
+    }
 </style>
 
-* <div class="good"></div>*Использование DOM* — браузер понимает DOM. Причём 
+* <span class="good"></span>_Использование DOM_ — браузер понимает DOM. Причём 
 очень хорошо. Его легко можно клонировать.
-* <div class="good"></div>*Ничто не отображается* — добавление `hidden` 
+* <span class="good"></span>_Ничто не отображается_ — добавление `hidden` 
 предотвращает отображение блока.
-* <div class="bad"></div>*Брак инертности* — хотя содержимое скрыто, на 
+* <span class="bad"></span>_Брак инертности_ — хотя содержимое скрыто, на 
 изображение всё равно происходит запрос. 
-* <div class="bad"></div>*Трудности стилизации и оформления* — все CSS-правила 
+* <span class="bad"></span>_Трудности стилизации и оформления_ — все CSS-правила 
 документа, в который вставлен скрытый DOM, должны содержать приставку 
 `#mytemplate` для того, чтобы они применялись только внутри шаблона. Это 
 ненадёжно и не даёт гарантии, что в будущем не возникнет конфликтов пространства имен. 
@@ -359,11 +439,11 @@ label {
 
 Обзор этого приёма:
 
-* <div class="good"></div>*Ничто не отображается* — браузер не отображает этот 
+* <span class="good"></span>_Ничто не отображается_ — браузер не отображает этот 
 блок, потому что для `<script>` установлено `display:none` по умолчанию.
-* <div class="good"></div>*Инертность* — браузер не парсит содержимое `<script>` 
+* <span class="good"></span>_Инертность_ — браузер не парсит содержимое `<script>` 
 как скрипт JS, потому что для него установлен тип отличный от "text/javascript".
-* <div class="bad"></div>*Проблемы с безопасностью* — поощряется использование 
+* <span class="bad"></span>_Проблемы с безопасностью_ — поощряется использование 
 `.innerHTML`. Строчный парсинг предоставляемых пользователем данных может 
 привести к уязвимости к межсайтовому скриптингу.
 
