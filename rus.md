@@ -134,7 +134,7 @@ URL-адрес изображения. Читайте [основные прин
     </script>
 
     <template>
-      <div>Шаблон использован: <span>0</span></div>
+      <div>Количество раз, которое использован шаблон: <span>0</span></div>
       <script>alert('Спасибо!')</script>
     </template>
 
@@ -164,7 +164,7 @@ button {
 <button onclick="useIt()">Нажми на меня</button>
 <div id="container"></div>
 <template id="inert-demo">
-  <div>Количество раз, которое использован Template: <span>0</span></div>
+  <div>Количество раз, которое использован шаблон: <span>0</span></div>
   <script>if ('HTMLTemplateElement' in window) {alert('Спасибо!')}</script>
 </template>
 <script>
