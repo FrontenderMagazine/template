@@ -294,36 +294,13 @@ DOM, тем чаще вам приходится прибегать к конк�
     bottom: 10px;
     right: 5px;
   }
-</style><div id="unsupportedbrowsersneedscoping">
-  <header>
-    <h3>Комментарий</h3>
-  </header>
-  <content select="p"></content>
-  <textarea></textarea>
-  <footer>
-    <button>Добавить</button>
-  </footer>
-</div></template>
+</style><div id="unsupportedbrowsersneedscoping"><header><h3>Комментарий</h3></header><content select="p"></content><textarea></textarea><footer><button>Добавить</button></footer></div></template>
 
 <div id="demo-sd-host">
   <p>Инструкции для пользователя</p>
 </div>
 
-<script>
-(function() {
-  var host = document.querySelector('#demo-sd-host');
-  var compat = HTMLElement.prototype.webkitCreateShadowRoot ||
-               HTMLElement.prototype.createShadowRoot ? true : false;
-  if (compat && 'HTMLTemplateElement' in window) {
-    var shadow = host.webkitCreateShadowRoot();
-    shadow.applyAuthorStyles = true;
-    shadow.appendChild(document.querySelector('#demo-sd-template').content);
-  } else {
-    document.querySelector('#unsupportedbrowsersneedscoping').style.display = 'none';
-    host.style.display = 'none';
-  }
-})();
-</script>
+<script src="js/example-2.js"></script>
 
 ## Нюансы
 
@@ -382,16 +359,15 @@ span.bad {
     background-color: red;
     }
 span.bad, span.good{
-    line-height: 28px;
-    border-radius: 50% 50% 50% 50%;
+    line-height: 20px;
+    border-radius: 100%;
     color: white;
     display: inline-block;
     vertical-align: middle;
     text-align: center;
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
-    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
     }
 span.good:after {
     content: '☺';
