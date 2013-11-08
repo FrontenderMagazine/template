@@ -294,8 +294,7 @@ DOM, тем чаще вам приходится прибегать к конк�
     bottom: 10px;
     right: 5px;
   }
-</style>
-<div id="unsupportedbrowsersneedscoping">
+</style><div id="unsupportedbrowsersneedscoping">
   <header>
     <h3>Комментарий</h3>
   </header>
@@ -304,8 +303,7 @@ DOM, тем чаще вам приходится прибегать к конк�
   <footer>
     <button>Добавить</button>
   </footer>
-</div>
-</template>
+</div></template>
 
 <div id="demo-sd-host">
   <p>Инструкции для пользователя</p>
