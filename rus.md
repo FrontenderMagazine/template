@@ -294,7 +294,18 @@ DOM, тем чаще вам приходится прибегать к конк�
     bottom: 10px;
     right: 5px;
   }
-</style><div id="unsupportedbrowsersneedscoping"><header><h3>Комментарий</h3></header><content select="p"></content><textarea></textarea><footer><button>Добавить</button></footer></div></template>
+</style>
+<div id="unsupportedbrowsersneedscoping">
+    <header>
+        <h3>Комментарий</h3>
+    </header>
+    <content select="p"></content>
+    <textarea></textarea>
+    <footer>
+        <button>Добавить</button>
+    </footer>
+</div>
+</template>
 
 <div id="demo-sd-host">
   <p>Инструкции для пользователя</p>
